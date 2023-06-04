@@ -1,23 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Feb 19 11:42:08 2021
 
-These codes were created for my master's thesis "Comparison of Machine Learning Algorithms to Detect RPL-Based IoT Devices Vulnerability".
-
-See README file for details.
-
-Basically, the program gets the RAW data of RPL network packets with this columns:
-
-No 	|	Time 	|	Source	|	Destination	|	Protocol 	Length	|	Info
-
-Then it splits the dataset into 1 second frames.
-For each frame it calculates the columns below:
-
-second | src | dst | packetcount | src_ratio | dst_ratio | src_duration_ratio | dst_duration_ratio | TotalPacketDuration | TotalPacketLenght | src_packet_ratio | dst_packet_ratio | DioCount | DisCount | DaoCount | OtherMsg | label
-
-
-@author: Murat Ugur KIRAZ
-"""
 # libraries
 from sklearn import preprocessing
 import pandas as pd
@@ -27,27 +8,6 @@ import numpy as np
 flnm = "SFA.csv"
 filestr = "Raw Data/" + flnm
 
-
-"""
-When giving names to the CSV files, I made the following coding.
-
-HF: Hello Flood,
-DR: Decreased Rank,
-VI: Version Number Increase,
-
-R: Root,
-N: Normal,
-M: Malicious,
-
-Numbers: Node Counts
-
-For example
-
-HF-1R10N1M
-
-Hello Flood Attack with 1 root mote, 10 normal motes and 1 vulnerable mote
-
-"""
 
 # For machine learning, we are classifying the dataset wit 0 and 1. 0 means all motes are normal. 1 means it includes a malicious mote.
 if "M" in flnm:
